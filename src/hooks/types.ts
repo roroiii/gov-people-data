@@ -1,8 +1,8 @@
 import { PeopleAttr } from '@/pages/api/types';
 
 export interface UseYearsState {
-  yearsData: number[] | null;
-  handleGetYears: () => void;
+  yearsList: string[] | null;
+  handleGetYearsList: () => void;
 }
 
 export interface CountyItems {
@@ -15,6 +15,12 @@ export interface CountyItem {
   countycode: string[];
   countyname: string[];
   countycode01: string[];
+}
+
+export interface TownItem {
+  towncode: string;
+  towncode01: string;
+  townname: string;
 }
 export interface PeopleResData {
   statistic_yyy: string;
@@ -46,11 +52,27 @@ export interface UsePeopleState {
 }
 
 export interface CountryList {
-  countycode: string;
-  countyname: string;
+  code: string;
+  name: string;
 }
 
 export interface UseCountryState {
   countryList: CountryList[] | null;
   handleGeCountryList: () => void;
+}
+
+export interface TownList {
+  code: string;
+  name: string;
+}
+
+export interface UseTownState {
+  townList: TownList[] | null;
+  handleGetTownList: (code: string) => void;
+}
+
+export interface UseOpenState {
+  open: boolean;
+  handleOpen: () => void;
+  handleClose: () => void;
 }

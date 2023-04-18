@@ -24,10 +24,10 @@ export const getCounty = async () => {
   return axios.get('https://api.nlsc.gov.tw/other/ListCounty');
 };
 
+export const getTown = async (code: string) => {
+  return axios.get(`https://api.nlsc.gov.tw/other/ListTown1/${code}`);
+};
+
 export const getPeopleData = async (data: PeopleAttr) => {
-  // const params = {
-  //   COUNTY: '臺中市',
-  //   TOWN: '太平區',
-  // };
   return await getRequest(`/ODRP019/${data.year}`, { params: data.params });
 };

@@ -2,19 +2,20 @@ import { useState } from 'react';
 import { getDocument } from '@/pages/api/govAPI';
 import { UseYearsState } from './types';
 
-function useYears(): UseYearsState {
-  const [yearsData, setYearsData] = useState<UseYearsState['yearsData']>(null);
+export default function useYears(): UseYearsState {
+  const [yearsList, setYearsList] = useState<UseYearsState['yearsList']>(null);
 
-  const handleGetYears = async () => {
+  const handleGetYearsList = async () => {
     const res = await getDocument();
     // console.log(res);
-    if (res && res.status === 200) setYearsData(res.data.paths['/ODRP019/{yyy}'].get.parameters[0].enum);
+    if (res && res.status === 200) {
+      const years = res.data.paths['/ODRP019/{yyy}'].get.parameters[0].enum.map(String);
+      setYearsList(years);
+    }
   };
 
   return {
-    yearsData,
-    handleGetYears,
+    yearsList,
+    handleGetYearsList,
   };
 }
-
-export default useYears;

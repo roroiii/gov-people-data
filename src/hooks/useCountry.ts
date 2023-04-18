@@ -3,7 +3,7 @@ import { getCounty } from '@/pages/api/govAPI';
 import { CountyItems, CountyItem, UseCountryState } from './types';
 import { getJSONbyXML } from '@/utils/xmlToJson';
 
-function useCountry(): UseCountryState {
+export default function useCountry(): UseCountryState {
   const [countryList, setCountryList] = useState<UseCountryState['countryList']>(null);
 
   const handleGeCountryList = async () => {
@@ -12,8 +12,8 @@ function useCountry(): UseCountryState {
       const json = getJSONbyXML(res.data) as CountyItems | null;
       if (!json) return;
       const countyItems = json?.countyItems.countyItem.map((item: CountyItem) => ({
-        countycode: item.countycode[0],
-        countyname: item.countyname[0],
+        code: item.countycode[0],
+        name: item.countyname[0],
       }));
 
       console.log({ json, countyItems });
@@ -27,5 +27,3 @@ function useCountry(): UseCountryState {
     handleGeCountryList,
   };
 }
-
-export default useCountry;

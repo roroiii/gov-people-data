@@ -6,7 +6,7 @@ interface SEO {
   description: string;
 }
 
-const Meta = ({ title, keywords, description }: SEO) => {
+function Meta({ title, keywords, description }: SEO) {
   const titleText = `${title} - TAIWAN`;
   return (
     <>
@@ -20,7 +20,7 @@ const Meta = ({ title, keywords, description }: SEO) => {
       </Head>
     </>
   );
-};
+}
 
 Meta.defaultProps = {
   title: '戶數、人口數按戶別及性別統計',

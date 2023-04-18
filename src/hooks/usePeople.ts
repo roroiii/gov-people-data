@@ -4,19 +4,20 @@ import { PeopleData, UsePeopleState } from './types';
 import _, { groupBy } from 'lodash-es';
 import { getPeopleFormat } from '@/utils/format';
 
-function usePeople(): UsePeopleState {
+export default function usePeople(): UsePeopleState {
   const [peopleData, setPeopleData] = useState<UsePeopleState['peopleData']>(null);
 
   // 待完成
   const handleGetPeopleData: UsePeopleState['handleGetPeopleData'] = async (data) => {
+    console.log({ data });
     const res = await getPeopleData(data);
     console.log(res.data);
-    if (res && res.status === 200) {
-      const datas = res.data.responseData;
-      const array = getPeopleFormat(datas);
+    if (res && res.status === 200 && res.data.responseCode === 'OD-0101-S') {
+      const items = res.data.responseData;
+      const array = getPeopleFormat(items);
       setPeopleData(array);
       const test = _.groupBy(array, (data: PeopleData) => data.county);
-      console.log({ test });
+      // console.log({ test });
     }
   };
 
@@ -25,5 +26,3 @@ function usePeople(): UsePeopleState {
     handleGetPeopleData,
   };
 }
-
-export default usePeople;

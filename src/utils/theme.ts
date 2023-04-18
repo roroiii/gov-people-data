@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, ThemeOptions } from '@mui/material/styles';
 
 const theme = createTheme({
   breakpoints: {
@@ -28,6 +28,20 @@ const theme = createTheme({
 
   typography: {
     fontFamily: ['Noto Sans TC', 'sans-serif'].join(','),
+    h1: { fontSize: '32px' },
+  },
+
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: `
+        @font-face {
+          font-family: 'Ubuntu';
+          font-style: normal;
+          font-display: swap;
+          font-weight: 400;
+        }
+      `,
+    },
   },
 });
 

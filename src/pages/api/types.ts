@@ -1,5 +1,5 @@
 export interface PeopleAttr {
-  year: number;
+  year: string;
   params?: {
     COUNTY: string;
     TOWN: string;
