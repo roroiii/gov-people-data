@@ -4,14 +4,18 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/utils/theme';
 import { ThemeProvider } from '@mui/material/styles';
 import '@/utils/MuiClassNameSetup';
+import store from '@/redux/store';
+import { Provider } from 'react-redux';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </Provider>
     </>
   );
 }

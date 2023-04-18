@@ -18,6 +18,13 @@ const SelectBox = styled(Box)`
   margin-top: 56px;
 `;
 
+const SubmitButton = styled(Button)`
+  max-height: 40px;
+  margin: 6px;
+  font-family: 'Ubuntu';
+  font-weight: 700;
+`;
+
 export default function Home() {
   const { yearsList, handleGetYearsList } = useYears();
   const { countryList, handleGeCountryList } = useCountry();
@@ -78,14 +85,9 @@ export default function Home() {
               disabled={country === '0'}
             />
           )}
-          <Button
-            onClick={handleSubmit}
-            variant="contained"
-            disabled={country === '0' && town === '0'}
-            sx={{ maxHeight: 40, m: '6px', fontFamily: 'Ubuntu', fontWeight: 700 }}
-          >
+          <SubmitButton onClick={handleSubmit} variant="contained" disabled={country === '0' && town === '0'}>
             Submit
-          </Button>
+          </SubmitButton>
         </SelectBox>
       </Container>
     </Layout>
