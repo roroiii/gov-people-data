@@ -42,12 +42,18 @@ export interface PeopleData {
   year: string; //民國年
   county: string;
   town: string;
-  ordinary: string; // 共同生活戶_戶數
-  single: string; // 單獨生活戶_戶數
+  values: {
+    ordinary: number; // 共同生活戶_戶數
+    ordinary_m: number;
+    ordinary_f: number;
+    single: number; // 單獨生活戶_戶數
+    single_m: number;
+    single_f: number;
+  };
 }
 
 export interface UsePeopleState {
-  peopleData: PeopleData[] | null;
+  peopleData: PeopleData | null;
   handleGetPeopleData: (data: PeopleAttr) => void;
 }
 
@@ -57,7 +63,7 @@ export interface CountryList {
 }
 
 export interface UseCountryState {
-  countryList: CountryList[] | null;
+  countyList: CountryList[] | null;
   handleGeCountryList: () => void;
 }
 

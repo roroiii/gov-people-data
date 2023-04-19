@@ -18,7 +18,10 @@ export default function SelectTown({ value, handleChange, selectList, disabled }
 
   return (
     <>
-      <FormControl sx={{ m: '6px', minWidth: 165 }} disabled={disabled}>
+      <FormControl
+        sx={{ m: '6px', minWidth: { xs: '100%', md: 165 }, maxWidth: { xs: '100%', md: 165 } }}
+        disabled={disabled}
+      >
         <InputLabel id="town-open-select-label">區</InputLabel>
         <Select
           labelId="town-open-select-label"

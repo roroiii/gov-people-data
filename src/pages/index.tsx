@@ -3,19 +3,29 @@ import usePeople from '@/hooks/usePeople';
 import useYears from '@/hooks/useYears';
 import useCountry from '@/hooks/useCountry';
 import useTown from '@/hooks/useTown';
-import { Box, Button, Container, Typography } from '@mui/material';
+import useSelect from '@/hooks/useSelect';
+import styled from '@emotion/styled';
+import { Box, Button, Container, Divider, Typography } from '@mui/material';
 import Layout from '@/components/Layout/Layout';
 import SelectTown from '@/components/selector/SelectTown';
 import SelectYear from '@/components/selector/SelectYear';
 import SelectCountry from '@/components/selector/SelectCountry';
-import styled from '@emotion/styled';
-import useSelect from '@/hooks/useSelect';
+import ColumnChart from '@/components/chart/ColumnChart';
+import PieChart from '@/components/chart/PieChart';
+import theme from '@/utils/theme';
 
 const SelectBox = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 56px;
+
+  ${theme.breakpoints.down('md')} {
+    flex-direction: column;
+    align-items: start;
+    margin-left: -8px;
+    margin-right: 8px;
+  }
 `;
 
 const SubmitButton = styled(Button)`
@@ -23,11 +33,45 @@ const SubmitButton = styled(Button)`
   margin: 6px;
   font-family: 'Ubuntu';
   font-weight: 700;
+
+  ${theme.breakpoints.down('md')} {
+    width: 100%;
+  }
+`;
+
+const DividerBox = styled('div')`
+  position: relative;
+  width: 100%;
+  margin-top: 42px;
+  margin-bottom: 42px;
+`;
+
+const DividerTitle = styled('div')`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 10px;
+  background-color: #ffffff;
+
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${theme.palette.secondary.main};
+    white-space: nowrap;
+    font-size: 13px;
+    padding: 8px 13px;
+    border: 1px ${theme.palette.secondary.main} solid;
+    border-radius: 16px;
+    max-width: 78px;
+    max-height: 32px;
+  }
 `;
 
 export default function Home() {
   const { yearsList, handleGetYearsList } = useYears();
-  const { countryList, handleGeCountryList } = useCountry();
+  const { countyList, handleGeCountryList } = useCountry();
   const { townList, handleGetTownList } = useTown();
   const { peopleData, handleGetPeopleData } = usePeople();
 
@@ -37,20 +81,20 @@ export default function Home() {
     year,
     handleChangeYearSelect,
 
-    country,
+    county,
     handleChangeCountrySelect,
 
     town,
     handleChangeTownSelect,
   } = useSelect();
 
-  console.log({ year, country, town });
+  console.log({ year, county, town });
 
   const handleSubmit = () => {
     handleGetPeopleData({
       year: year,
       params: {
-        COUNTY: country.slice(1),
+        COUNTY: county.slice(1),
         TOWN: town,
       },
     });
@@ -62,8 +106,8 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (country) handleGetTownList(country[0]);
-  }, [country]);
+    if (county) handleGetTownList(county[0]);
+  }, [county]);
 
   return (
     <Layout>
@@ -74,21 +118,31 @@ export default function Home() {
 
         <SelectBox>
           {yearsList && <SelectYear value={year} handleChange={handleChangeYearSelect} selectList={yearsList} />}
-          {countryList && (
-            <SelectCountry value={country} handleChange={handleChangeCountrySelect} selectList={countryList} />
+          {countyList && (
+            <SelectCountry value={county} handleChange={handleChangeCountrySelect} selectList={countyList} />
           )}
           {townList && (
             <SelectTown
               value={town}
               handleChange={handleChangeTownSelect}
               selectList={townList}
-              disabled={country === '0'}
+              disabled={county === '0'}
             />
           )}
-          <SubmitButton onClick={handleSubmit} variant="contained" disabled={country === '0' && town === '0'}>
+          <SubmitButton onClick={handleSubmit} variant="contained" disabled={county === '0' && town === '0'}>
             Submit
           </SubmitButton>
         </SelectBox>
+
+        <DividerBox>
+          <DividerTitle>
+            <p>搜尋結果</p>
+          </DividerTitle>
+          <Divider color="#C29FFF" />
+        </DividerBox>
+
+        <ColumnChart peopleData={peopleData} />
+        <PieChart peopleData={peopleData} />
       </Container>
     </Layout>
   );

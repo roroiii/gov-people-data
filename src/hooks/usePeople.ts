@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { getPeopleData } from '@/pages/api/govAPI';
-import { PeopleData, UsePeopleState } from './types';
-import _, { groupBy } from 'lodash-es';
+import { UsePeopleState } from './types';
 import { getPeopleFormat } from '@/utils/format';
 import { useDispatch } from 'react-redux';
 import { setLoading } from '@/redux/reducers/loadingReducer';
@@ -19,10 +18,10 @@ export default function usePeople(): UsePeopleState {
       console.log(res.data);
       dispatch(setLoading(false));
       const items = res.data.responseData;
-      const array = getPeopleFormat(items);
-      setPeopleData(array);
-      const test = _.groupBy(array, (data: PeopleData) => data.county);
-      // console.log({ test });
+      const result = getPeopleFormat(items);
+      console.log({ result });
+
+      setPeopleData(result);
     }
   };
 

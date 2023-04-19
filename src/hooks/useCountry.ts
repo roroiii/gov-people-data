@@ -4,7 +4,7 @@ import { CountyItems, CountyItem, UseCountryState } from './types';
 import { getJSONbyXML } from '@/utils/xmlToJson';
 
 export default function useCountry(): UseCountryState {
-  const [countryList, setCountryList] = useState<UseCountryState['countryList']>(null);
+  const [countyList, setCountryList] = useState<UseCountryState['countyList']>(null);
 
   const handleGeCountryList = async () => {
     const res = await getCounty();
@@ -23,7 +23,7 @@ export default function useCountry(): UseCountryState {
   };
 
   return {
-    countryList,
+    countyList,
     handleGeCountryList,
   };
 }

@@ -17,11 +17,11 @@ export default function SelectCountry({ value, handleChange, selectList }: Selec
 
   return (
     <>
-      <FormControl sx={{ m: '6px', minWidth: 165 }}>
-        <InputLabel id="country-open-select-label">縣/市</InputLabel>
+      <FormControl fullWidth sx={{ m: '6px', minWidth: { xs: '100%', md: 165 }, maxWidth: { xs: '100%', md: 165 } }}>
+        <InputLabel id="county-open-select-label">縣/市</InputLabel>
         <Select
-          labelId="country-open-select-label"
-          id="country-controlled-open-select"
+          labelId="county-open-select-label"
+          id="county-controlled-open-select"
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}

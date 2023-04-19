@@ -1,11 +1,11 @@
-import { createTheme, ThemeOptions } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
       sm: 375,
-      md: 769,
+      md: 768,
       lg: 1004,
       xl: 1920,
     },
@@ -28,7 +28,12 @@ const theme = createTheme({
 
   typography: {
     fontFamily: ['Noto Sans TC', 'sans-serif'].join(','),
-    h1: { fontSize: '32px' },
+    h1: {
+      fontSize: '2rem',
+      '@media (max-width:768px)': {
+        fontSize: '1rem',
+      },
+    },
   },
 
   components: {
