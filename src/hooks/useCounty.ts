@@ -13,13 +13,14 @@ export default function useCounty(): UseCountyState {
     }
     if (res && res.status === 200) {
       const json = getJSONbyXML(res.data) as CountyItems | null;
-      if (!json) return;
-      const countyItems = json?.countyItems.countyItem.map((item: CountyItem) => ({
-        code: item.countycode[0],
-        name: item.countyname[0],
-      }));
+      if (json) {
+        const countyItems = json.countyItems.countyItem.map((item: CountyItem) => ({
+          code: item.countycode[0],
+          name: item.countyname[0],
+        }));
 
-      setCountyList(countyItems);
+        setCountyList(countyItems);
+      }
     }
   };
 

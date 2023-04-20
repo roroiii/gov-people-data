@@ -3,7 +3,6 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import useOpen from '@/hooks/useOpen';
 import { TownList } from '@/hooks/types';
 
 interface SelectTownProps {
@@ -14,8 +13,6 @@ interface SelectTownProps {
 }
 
 export default function SelectTown({ value, handleChange, selectList, disabled }: SelectTownProps) {
-  const { open, handleOpen, handleClose } = useOpen();
-
   return (
     <>
       <FormControl
@@ -26,9 +23,6 @@ export default function SelectTown({ value, handleChange, selectList, disabled }
         <Select
           labelId="town-open-select-label"
           id="town-controlled-open-select"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
           value={value}
           label={value}
           onChange={handleChange}

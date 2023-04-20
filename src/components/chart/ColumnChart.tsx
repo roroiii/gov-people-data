@@ -20,6 +20,9 @@ export default function ColumnChart(props: HighchartsReact.Props) {
       title: {
         text: columnOptionsTitle,
       },
+      chart: {
+        backgroundColor: 'transparent',
+      },
       accessibility: {
         enabled: true, // 啟用 accessibility 功能
         description: '人口數、戶數按戶別及性別統計，統計男性與女性的共同生活與獨立生活數據。',
@@ -51,6 +54,9 @@ export default function ColumnChart(props: HighchartsReact.Props) {
         },
       },
       colors: ['#7d5fb2', '#c29fff'],
+      credits: {
+        enabled: false,
+      },
       exporting: {
         buttons: {
           contextButton: {

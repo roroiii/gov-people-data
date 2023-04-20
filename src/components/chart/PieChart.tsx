@@ -16,6 +16,9 @@ export default function PieChart(props: HighchartsReact.Props) {
       title: {
         text: '戶數統計',
       },
+      chart: {
+        backgroundColor: 'transparent',
+      },
       series: [
         {
           type: 'pie',
@@ -36,6 +39,9 @@ export default function PieChart(props: HighchartsReact.Props) {
         categories: ['共同生活', '獨立生活'],
       },
       colors: ['#A6B0F9', '#646EAD'],
+      credits: {
+        enabled: false,
+      },
       exporting: {
         buttons: {
           contextButton: {
