@@ -8,6 +8,10 @@ export default function useCountry(): UseCountryState {
 
   const handleGeCountryList = async () => {
     const res = await getCounty();
+    if (res instanceof Error) {
+      console.log(res);
+      return;
+    }
     if (res && res.status === 200) {
       const json = getJSONbyXML(res.data) as CountyItems | null;
       if (!json) return;

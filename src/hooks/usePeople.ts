@@ -14,9 +14,16 @@ export default function usePeople(): UsePeopleState {
     dispatch(setLoading(true));
     console.log({ data });
     const res = await getPeopleData(data);
-    if (res && res.status === 200 && res.data.responseCode === 'OD-0101-S') {
-      console.log(res.data);
+
+    if (res instanceof Error) {
       dispatch(setLoading(false));
+      console.log(res);
+      return;
+    }
+
+    if (res && res.status === 200 && res.data.responseCode === 'OD-0101-S') {
+      dispatch(setLoading(false));
+      console.log(res.data);
       const items = res.data.responseData;
       const result = getPeopleFormat(items);
       console.log({ result });

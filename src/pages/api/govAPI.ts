@@ -2,32 +2,31 @@ import axios, { AxiosError } from 'axios';
 import { PeopleAttr } from './types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const request = axios.create({
-  baseURL: API_URL,
-});
+const COUNTY_API = process.env.NEXT_PUBLIC_COUNTY_API;
+const TOWN_API = process.env.NEXT_PUBLIC_TOWN_API;
+const DOCUMENT_API = process.env.NEXT_PUBLIC_DOCUMENT_API;
 
-export const getRequest = async (url: string, params: any) => {
+export const getRequest = async (url: string, params?: any) => {
   try {
-    return await request.get(url, params);
+    return await axios.get(url, params);
   } catch (error) {
     const err = error as AxiosError;
-    console.log(err);
-    return false;
+    return err;
   }
 };
 
 export const getDocument = async () => {
-  return await axios.get('https://www.ris.gov.tw/rs-opendata/api/Main/docs/v1');
+  return await getRequest(`${DOCUMENT_API}`);
 };
 
 export const getCounty = async () => {
-  return axios.get('https://api.nlsc.gov.tw/other/ListCounty');
+  return getRequest(`${COUNTY_API}`);
 };
 
 export const getTown = async (code: string) => {
-  return axios.get(`https://api.nlsc.gov.tw/other/ListTown1/${code}`);
+  return getRequest(`${TOWN_API}/${code}`);
 };
 
 export const getPeopleData = async (data: PeopleAttr) => {
-  return await getRequest(`/ODRP019/${data.year}`, { params: data.params });
+  return await getRequest(`${API_URL}/ODRP019/${data.year}`, { params: data.params });
 };

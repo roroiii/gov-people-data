@@ -7,6 +7,10 @@ export default function useTown(): UseTownState {
 
   const handleGetTownList: UseTownState['handleGetTownList'] = async (code) => {
     const res = await getTown(code);
+    if (res instanceof Error) {
+      console.log(res);
+      return;
+    }
     if (res && res.status === 200) {
       const townItems = res.data.map((item: TownItem) => ({
         code: item.towncode,
