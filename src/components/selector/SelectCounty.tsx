@@ -4,17 +4,16 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import useOpen from '@/hooks/useOpen';
-import { CountryList } from '@/hooks/types';
+import { CountyList } from '@/hooks/types';
 
-interface SelectCountryProps {
+interface SelectCountyProps {
   value: string;
   handleChange: (event: SelectChangeEvent) => void;
-  selectList: CountryList[];
+  selectList: CountyList[];
 }
 
-export default function SelectCountry({ value, handleChange, selectList }: SelectCountryProps) {
-  const { open, handleOpen, handleClose } = useOpen();
-
+export default function SelectCounty({ value, handleChange, selectList }: SelectCountyProps) {
+  console.log(value);
   return (
     <>
       <FormControl fullWidth sx={{ m: '6px', minWidth: { xs: '100%', md: 165 }, maxWidth: { xs: '100%', md: 165 } }}>
@@ -22,9 +21,6 @@ export default function SelectCountry({ value, handleChange, selectList }: Selec
         <Select
           labelId="county-open-select-label"
           id="county-controlled-open-select"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
           value={value}
           label={value}
           onChange={handleChange}
@@ -36,8 +32,8 @@ export default function SelectCountry({ value, handleChange, selectList }: Selec
           <MenuItem disabled value="0">
             請選擇 縣/市
           </MenuItem>
-          {selectList.map((item: CountryList) => (
-            <MenuItem key={item.name} value={`${item.code}${item.name}`}>
+          {selectList.map((item: CountyList) => (
+            <MenuItem key={item.name} value={item.name}>
               {item.name}
             </MenuItem>
           ))}

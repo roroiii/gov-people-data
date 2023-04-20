@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import { getCounty } from '@/pages/api/govAPI';
-import { CountyItems, CountyItem, UseCountryState } from './types';
+import { CountyItems, CountyItem, UseCountyState } from './types';
 import { getJSONbyXML } from '@/utils/xmlToJson';
 
-export default function useCountry(): UseCountryState {
-  const [countyList, setCountryList] = useState<UseCountryState['countyList']>(null);
+export default function useCounty(): UseCountyState {
+  const [countyList, setCountyList] = useState<UseCountyState['countyList']>(null);
 
-  const handleGeCountryList = async () => {
+  const handleGeCountyList = async () => {
     const res = await getCounty();
     if (res instanceof Error) {
-      console.log(res);
       return;
     }
     if (res && res.status === 200) {
@@ -20,14 +19,12 @@ export default function useCountry(): UseCountryState {
         name: item.countyname[0],
       }));
 
-      console.log({ json, countyItems });
-
-      setCountryList(countyItems);
+      setCountyList(countyItems);
     }
   };
 
   return {
     countyList,
-    handleGeCountryList,
+    handleGeCountyList,
   };
 }

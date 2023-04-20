@@ -57,14 +57,14 @@ export interface UsePeopleState {
   handleGetPeopleData: (data: PeopleAttr) => void;
 }
 
-export interface CountryList {
+export interface CountyList {
   code: string;
   name: string;
 }
 
-export interface UseCountryState {
-  countyList: CountryList[] | null;
-  handleGeCountryList: () => void;
+export interface UseCountyState {
+  countyList: CountyList[] | null;
+  handleGeCountyList: () => void;
 }
 
 export interface TownList {
@@ -81,4 +81,10 @@ export interface UseOpenState {
   open: boolean;
   handleOpen: () => void;
   handleClose: () => void;
+}
+
+export interface useSelectProps {
+  defaultYear?: string;
+  defaultCounty?: string;
+  defaultTown?: string;
 }
