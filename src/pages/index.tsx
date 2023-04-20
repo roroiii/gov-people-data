@@ -19,6 +19,7 @@ const SelectBox = styled(Box)`
   justify-content: center;
   align-items: center;
   margin-top: 56px;
+  z-index: 2;
 
   ${theme.breakpoints.down('md')} {
     flex-direction: column;
@@ -30,7 +31,7 @@ const SelectBox = styled(Box)`
 
 const SubmitButton = styled(Button)`
   max-height: 40px;
-  margin: 6px;
+  margin-left: 6px;
   font-family: 'Ubuntu';
   font-weight: 700;
 
@@ -111,39 +112,37 @@ export default function Home() {
 
   return (
     <Layout>
-      <Container fixed sx={{ pt: 3 }}>
-        <Typography variant="h1" textAlign="center">
-          人口數、戶數按戶別及性別統計
-        </Typography>
+      <Typography variant="h1" textAlign="center">
+        人口數、戶數按戶別及性別統計
+      </Typography>
 
-        <SelectBox>
-          {yearsList && <SelectYear value={year} handleChange={handleChangeYearSelect} selectList={yearsList} />}
-          {countyList && (
-            <SelectCountry value={county} handleChange={handleChangeCountrySelect} selectList={countyList} />
-          )}
-          {townList && (
-            <SelectTown
-              value={town}
-              handleChange={handleChangeTownSelect}
-              selectList={townList}
-              disabled={county === '0'}
-            />
-          )}
-          <SubmitButton onClick={handleSubmit} variant="contained" disabled={county === '0' && town === '0'}>
-            Submit
-          </SubmitButton>
-        </SelectBox>
+      <SelectBox>
+        {yearsList && <SelectYear value={year} handleChange={handleChangeYearSelect} selectList={yearsList} />}
+        {countyList && (
+          <SelectCountry value={county} handleChange={handleChangeCountrySelect} selectList={countyList} />
+        )}
+        {townList && (
+          <SelectTown
+            value={town}
+            handleChange={handleChangeTownSelect}
+            selectList={townList}
+            disabled={county === '0'}
+          />
+        )}
+        <SubmitButton onClick={handleSubmit} variant="contained" disabled={county === '0' && town === '0'}>
+          Submit
+        </SubmitButton>
+      </SelectBox>
 
-        <DividerBox>
-          <DividerTitle>
-            <p>搜尋結果</p>
-          </DividerTitle>
-          <Divider color="#C29FFF" />
-        </DividerBox>
+      <DividerBox>
+        <DividerTitle>
+          <p>搜尋結果</p>
+        </DividerTitle>
+        <Divider color="#C29FFF" />
+      </DividerBox>
 
-        <ColumnChart peopleData={peopleData} />
-        <PieChart peopleData={peopleData} />
-      </Container>
+      <ColumnChart peopleData={peopleData} />
+      <PieChart peopleData={peopleData} />
     </Layout>
   );
 }

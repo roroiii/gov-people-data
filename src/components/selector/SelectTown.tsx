@@ -34,7 +34,7 @@ export default function SelectTown({ value, handleChange, selectList, disabled }
           onChange={handleChange}
           sx={{
             maxHeight: '40px',
-            '& legend': { pr: 1 },
+            '& legend': { pr: 1, maxWidth: 20 },
           }}
         >
           <MenuItem disabled value="0">

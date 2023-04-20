@@ -30,7 +30,7 @@ export default function SelectCountry({ value, handleChange, selectList }: Selec
           onChange={handleChange}
           sx={{
             maxHeight: '40px',
-            '& legend': { pr: 3 },
+            '& legend': { pr: 3, maxWidth: 40 },
           }}
         >
           <MenuItem disabled value="0">
