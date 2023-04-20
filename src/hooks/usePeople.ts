@@ -21,11 +21,9 @@ export default function usePeople(): UsePeopleState {
 
     if (res && res.status === 200) {
       dispatch(setLoading(false));
-
       if (res.data.responseCode === 'OD-0101-S') {
         const items = res.data.responseData;
         const result = getPeopleFormat(items);
-
         setPeopleData(result);
       }
     }

@@ -80,7 +80,6 @@ interface LayoutProps {
 }
 
 export default function Layout({ children, defaultProps }: LayoutProps) {
-  console.log(defaultProps);
   const router = useRouter();
   const isLoading = useSelector(selectLoading);
   const { yearsList, handleGetYearsList } = useYears();

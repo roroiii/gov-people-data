@@ -13,7 +13,6 @@ interface SelectCountyProps {
 }
 
 export default function SelectCounty({ value, handleChange, selectList }: SelectCountyProps) {
-  console.log(value);
   return (
     <>
       <FormControl fullWidth sx={{ m: '6px', minWidth: { xs: '100%', md: 165 }, maxWidth: { xs: '100%', md: 165 } }}>

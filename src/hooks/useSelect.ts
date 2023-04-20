@@ -3,7 +3,6 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import { useSelectProps } from './types';
 
 export default function useSelect(props?: useSelectProps) {
-  console.log(props);
   const [year, setYear] = useState<string>(props?.defaultYear ? props?.defaultYear : '110');
   const [county, setCounty] = useState<string>(props?.defaultCounty ? props?.defaultCounty : '0');
   const [town, setTown] = useState<string>(props?.defaultTown ? props?.defaultTown : '0');

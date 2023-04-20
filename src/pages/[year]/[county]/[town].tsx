@@ -24,7 +24,6 @@ export default function DetailPage() {
 
   if (year && county && town) {
     const defaultProps = { defaultYear: year, defaultCounty: county, defaultTown: town };
-
     return (
       <Layout defaultProps={defaultProps}>
         <ColumnChart peopleData={peopleData} />
