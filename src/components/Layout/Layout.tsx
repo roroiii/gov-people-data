@@ -94,7 +94,6 @@ export default function Layout({ children, defaultProps }: LayoutProps) {
 
     town,
     handleChangeTownSelect,
-    handleClearTown,
   } = useSelect(defaultProps);
 
   const handleSubmit = () => {
@@ -119,7 +118,6 @@ export default function Layout({ children, defaultProps }: LayoutProps) {
       handleGetTownList(countyCode[0]?.code);
     }
   }, [defaultProps]);
-
   return (
     <>
       <Meta />
@@ -134,18 +132,18 @@ export default function Layout({ children, defaultProps }: LayoutProps) {
 
         <SelectBox>
           {yearsList && <SelectYear value={year} handleChange={handleChangeYearSelect} selectList={yearsList} />}
+
           {countyList && (
             <SelectCounty value={county} handleChange={handleChangeCountySelect} selectList={countyList} />
           )}
-          {townList && (
-            <SelectTown
-              value={town}
-              handleChange={handleChangeTownSelect}
-              handleClearTown={handleClearTown}
-              selectList={townList}
-              disabled={county === '0'}
-            />
-          )}
+
+          <SelectTown
+            value={town}
+            handleChange={handleChangeTownSelect}
+            selectList={townList}
+            disabled={county === ''}
+          />
+
           <SubmitButton onClick={handleSubmit} variant="contained" disabled={county === '0' || town === '0'}>
             Submit
           </SubmitButton>

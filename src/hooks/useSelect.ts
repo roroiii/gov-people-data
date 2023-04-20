@@ -3,26 +3,21 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import { useSelectProps } from './types';
 
 export default function useSelect(props?: useSelectProps) {
-  const [year, setYear] = useState<string>(props?.defaultYear ? props?.defaultYear : '110');
-  const [county, setCounty] = useState<string>(props?.defaultCounty ? props?.defaultCounty : '0');
-  const [town, setTown] = useState<string>(props?.defaultTown ? props?.defaultTown : '0');
+  const [year, setYear] = useState<string>(props?.defaultYear || '110');
+  const [county, setCounty] = useState<string>(props?.defaultCounty || '');
+  const [town, setTown] = useState<string>(props?.defaultTown || '');
 
   const handleChangeYearSelect = (event: SelectChangeEvent<typeof year>) => {
     setYear(event.target.value);
   };
 
-  const handleChangeCountySelect = (event: SelectChangeEvent<typeof county>) => {
-    setTown('0');
-    setCounty(event.target.value);
+  const handleChangeCountySelect = (event: any, newInputValue: string) => {
+    setTown('');
+    setCounty(newInputValue);
   };
 
-  const handleChangeTownSelect = (event: SelectChangeEvent<typeof town>) => {
-    setTown(event.target.value);
-  };
-
-  const handleClearTown = () => {
-    setTown('0');
-    setCounty('0');
+  const handleChangeTownSelect = (event: any, newInputValue: string) => {
+    setTown(newInputValue);
   };
 
   return {
@@ -34,6 +29,5 @@ export default function useSelect(props?: useSelectProps) {
 
     town,
     handleChangeTownSelect,
-    handleClearTown,
   };
 }

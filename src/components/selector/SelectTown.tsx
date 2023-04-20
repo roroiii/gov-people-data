@@ -1,47 +1,68 @@
 import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { TownList } from '@/hooks/types';
+import { Autocomplete, TextField } from '@mui/material';
+import theme from '@/utils/theme';
 
 interface SelectTownProps {
   value: string;
-  handleChange: (event: SelectChangeEvent) => void;
-  handleClearTown: () => void;
-  selectList: TownList[];
+  handleChange: (event: any, newInputValue: string) => void;
+  selectList: TownList[] | null;
   disabled: boolean;
 }
 
-export default function SelectTown({ value, handleChange, handleClearTown, selectList, disabled }: SelectTownProps) {
+export default function SelectTown({ value, handleChange, selectList, disabled }: SelectTownProps) {
+  let options;
+  if (selectList) {
+    options = selectList.map((item) => item.name);
+    options.unshift('');
+  }
   return (
-    <>
-      <FormControl
-        sx={{ m: '6px', minWidth: { xs: '100%', md: 165 }, maxWidth: { xs: '100%', md: 165 } }}
-        disabled={disabled}
+    <FormControl
+      fullWidth
+      sx={{
+        m: '6px',
+        minWidth: { xs: '100%', md: 165 },
+        maxWidth: { xs: '100%', md: 165 },
+        maxHeight: 40,
+        '&:focus-within label': {
+          color: theme.palette.primary.main,
+        },
+      }}
+    >
+      <InputLabel
+        htmlFor="town-label"
+        sx={{
+          position: 'absolute',
+          top: '-25px',
+          left: '0',
+          bgcolor: 'white',
+          padding: '0 5px',
+          fontSize: 12,
+        }}
       >
-        <InputLabel id="town-open-select-label">區</InputLabel>
-        <Select
-          labelId="town-open-select-label"
-          id="town-controlled-open-select"
-          value={value}
-          label={value}
-          onChange={handleChange}
-          sx={{
-            maxHeight: '40px',
-            '& legend': { pr: 1, maxWidth: 20 },
-          }}
-        >
-          <MenuItem disabled value="0">
-            <em>請先選擇 縣/市</em>
-          </MenuItem>
-          {selectList.map((item: TownList) => (
-            <MenuItem key={item.name} value={item.name}>
-              {item.name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </>
+        區
+      </InputLabel>
+      <Autocomplete
+        disabled={disabled}
+        id="town-label"
+        value={value}
+        inputValue={value}
+        onInputChange={handleChange}
+        options={options || [value]}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            placeholder="請先選擇 縣/市"
+            variant="outlined"
+            sx={{
+              maxHeight: '40px',
+              '& #town-label': { p: 0 },
+            }}
+          />
+        )}
+      />
+    </FormControl>
   );
 }
