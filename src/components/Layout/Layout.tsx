@@ -94,6 +94,7 @@ export default function Layout({ children, defaultProps }: LayoutProps) {
 
     town,
     handleChangeTownSelect,
+    handleClearTown,
   } = useSelect(defaultProps);
 
   const handleSubmit = () => {
@@ -140,6 +141,7 @@ export default function Layout({ children, defaultProps }: LayoutProps) {
             <SelectTown
               value={town}
               handleChange={handleChangeTownSelect}
+              handleClearTown={handleClearTown}
               selectList={townList}
               disabled={county === '0'}
             />
@@ -153,7 +155,7 @@ export default function Layout({ children, defaultProps }: LayoutProps) {
           <DividerTitle>
             <p>搜尋結果</p>
           </DividerTitle>
-          <Divider color="#C29FFF" />
+          <Divider sx={{ background: theme.palette.secondary.light }} />
         </DividerBox>
 
         {children}

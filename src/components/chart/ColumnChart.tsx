@@ -27,6 +27,18 @@ export default function ColumnChart(props: HighchartsReact.Props) {
         enabled: true, // 啟用 accessibility 功能
         description: '人口數、戶數按戶別及性別統計，統計男性與女性的共同生活與獨立生活數據。',
       },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            formatter: function () {
+              return Highcharts.numberFormat(this.y!, 0, '.', ',');
+            },
+          },
+        },
+      },
       series: [
         {
           type: 'column',

@@ -20,6 +20,11 @@ export default function useSelect(props?: useSelectProps) {
     setTown(event.target.value);
   };
 
+  const handleClearTown = () => {
+    setTown('0');
+    setCounty('0');
+  };
+
   return {
     year,
     handleChangeYearSelect,
@@ -29,5 +34,6 @@ export default function useSelect(props?: useSelectProps) {
 
     town,
     handleChangeTownSelect,
+    handleClearTown,
   };
 }

@@ -8,11 +8,12 @@ import { TownList } from '@/hooks/types';
 interface SelectTownProps {
   value: string;
   handleChange: (event: SelectChangeEvent) => void;
+  handleClearTown: () => void;
   selectList: TownList[];
   disabled: boolean;
 }
 
-export default function SelectTown({ value, handleChange, selectList, disabled }: SelectTownProps) {
+export default function SelectTown({ value, handleChange, handleClearTown, selectList, disabled }: SelectTownProps) {
   return (
     <>
       <FormControl
