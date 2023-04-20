@@ -1,38 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 戶數、人口數按戶別及性別 統計圖表
 
-## Getting Started
+live demo:https://gov-people-data.vercel.app
 
-First, run the development server:
+## Requirements
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- 使用 React
+- Follow Airbnb coding style
+- 程式碼 commit 至 GitHub
+- 以 live demo 做呈現 (Vercel)
+- 使用 Typescript
+- 使用第三方套件
+- Figma 中的 TAIWAN 不跟隨畫面滾動
+- Input group
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  - Submit button: All fields must be selected, otherwise, the button should be disabled
+  - The selection menus for "縣/市" and "區", need to use autocomplete selector to help users quickly find the desired option
+  - The selection menu for "區" is disabled until "縣/市" is selected
+  - When the selection for "縣/市" changes, the value for "區" should be cleared
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Submit and Send Request
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+  - Based on the values of "年", "縣/市", and "區", redirect to a new URL/page and send an API request
+  - While waiting for the API response, there should be a UI prompt indicating that the page is loading
+  - Users can also trigger the query by entering "年", "縣/市", and "區" directly into the URL
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Charts
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+  - The charts example in Figma are images because there are no restrictions on how they should be implemented, but we recommend Highcharts
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- RWD
+  - In Figma, only two sizes are specified, so the general principle for implementing other screen sizes is to avoid breaking the layout
