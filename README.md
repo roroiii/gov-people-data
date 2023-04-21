@@ -2,6 +2,8 @@
 
 live demo:https://gov-people-data.vercel.app
 
+![](public/picture.png)
+
 ## Requirements
 
 - 使用 React
