@@ -1,4 +1,5 @@
 import { PeopleAttr } from '@/pages/api/types';
+import { SelectChangeEvent } from '@mui/material';
 
 export interface UseYearsState {
   yearsList: string[] | null;
@@ -81,6 +82,15 @@ export interface UseOpenState {
   open: boolean;
   handleOpen: () => void;
   handleClose: () => void;
+}
+
+export interface useSelectState {
+  year: string;
+  handleChangeYearSelect: (event: SelectChangeEvent) => void;
+  county: string;
+  handleChangeCountySelect: (event: any, newInputValue: string) => void;
+  town: string;
+  handleChangeTownSelect: (event: any, newInputValue: string) => void;
 }
 
 export interface useSelectProps {

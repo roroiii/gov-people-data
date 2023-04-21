@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { SelectChangeEvent } from '@mui/material/Select';
-import { useSelectProps } from './types';
+import { useSelectProps, useSelectState } from './types';
 
-export default function useSelect(props?: useSelectProps) {
+export default function useSelect(props?: useSelectProps): useSelectState {
   const [year, setYear] = useState<string>(props?.defaultYear || '110');
   const [county, setCounty] = useState<string>(props?.defaultCounty || '');
   const [town, setTown] = useState<string>(props?.defaultTown || '');

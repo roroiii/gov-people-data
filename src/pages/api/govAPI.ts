@@ -6,7 +6,7 @@ const COUNTY_API = process.env.NEXT_PUBLIC_COUNTY_API;
 const TOWN_API = process.env.NEXT_PUBLIC_TOWN_API;
 const DOCUMENT_API = process.env.NEXT_PUBLIC_DOCUMENT_API;
 
-export const getRequest = async (url: string, params?: any) => {
+const getRequest = async (url: string, params?: any) => {
   try {
     return await axios.get(url, params);
   } catch (error) {

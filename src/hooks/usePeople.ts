@@ -9,7 +9,6 @@ export default function usePeople(): UsePeopleState {
   const dispatch = useDispatch();
   const [peopleData, setPeopleData] = useState<UsePeopleState['peopleData']>(null);
 
-  // 待完成
   const handleGetPeopleData: UsePeopleState['handleGetPeopleData'] = async (data) => {
     dispatch(setLoading(true));
     const res = await getPeopleData(data);

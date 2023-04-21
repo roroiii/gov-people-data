@@ -1,6 +1,6 @@
 import { CountyItem, PeopleData, PeopleResData } from '@/hooks/types';
 
-const calcPeople = (items: PeopleResData[]) => {
+function calcPeople(items: PeopleResData[]) {
   const values: PeopleData['values'] = {
     ordinary: 0,
     ordinary_f: 0,
@@ -19,13 +19,10 @@ const calcPeople = (items: PeopleResData[]) => {
     values.single_m += Number(item.household_single_m);
   });
   return values;
-};
+}
 
-export function getPeopleFormat(items: PeopleResData[]) {
-  const values = calcPeople(items);
-
-  // 處理 106 - 108 年 statistic_yyy key 中有神奇的符號
-  const newData = items.map((item: any) => {
+function getDataFormat(items: PeopleResData[]) {
+  return items.map((item: any) => {
     let statistic_yyy = item['﻿statistic_yyy'];
     if (statistic_yyy) {
       statistic_yyy = statistic_yyy.replace(/[^\w]/g, '');
@@ -33,7 +30,11 @@ export function getPeopleFormat(items: PeopleResData[]) {
     const rest = Object.fromEntries(Object.entries(item).filter(([key, value]) => key !== '﻿statistic_yyy'));
     return { statistic_yyy, ...rest };
   });
+}
 
+export function getPeopleFormat(items: PeopleResData[]) {
+  const values = calcPeople(items);
+  const newData = getDataFormat(items); // 處理 106 - 108 年 statistic_yyy key 中有神奇的符號
   const data = {
     year: newData[0].statistic_yyy,
     county: items[0].site_id.slice(0, 3),

@@ -14,7 +14,8 @@ export default function ColumnChart(props: HighchartsReact.Props) {
   const { peopleData } = props;
 
   if (peopleData) {
-    const columnOptionsTitle = peopleData ? `${peopleData.year}年 ${peopleData.county}${peopleData.town}` : '';
+    const { year = '', county = '', town = '' } = peopleData ?? {}; // 確保初始值不會印出 undefined
+    const columnOptionsTitle = `${year}年 ${county}${town}`;
 
     const columnOptions: Highcharts.Options = {
       title: {

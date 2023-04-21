@@ -1,21 +1,21 @@
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import Meta from './Meta';
-import NavbarAppBar from '@/components/Navbar';
-import { selectLoading } from '@/redux/reducers/loadingReducer';
-import LoadingBox from './LoadingBox';
-import TaiwanBox from '../TaiwanBox';
 import { Container, Box, Button, Divider, Typography } from '@mui/material';
 import styled from '@emotion/styled';
+import NavbarAppBar from '@/components/Navbar';
+import Meta from './Meta';
+import LoadingBox from './LoadingBox';
+import TaiwanBox from '../TaiwanBox';
+import SelectYear from '../selector/SelectYear';
+import SelectCounty from '../selector/SelectCounty';
+import SelectTown from '../selector/SelectTown';
 import theme from '@/utils/theme';
+import { selectLoading } from '@/redux/reducers/loadingReducer';
 import useYears from '@/hooks/useYears';
 import useCounty from '@/hooks/useCounty';
 import useTown from '@/hooks/useTown';
-import SelectYear from '../selector/SelectYear';
-import SelectCounty from '../selector/SelectCounty';
 import useSelect from '@/hooks/useSelect';
-import SelectTown from '../selector/SelectTown';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { useSelectProps } from '@/hooks/types';
 
 const SelectBox = styled(Box)`
@@ -75,7 +75,7 @@ const DividerTitle = styled('div')`
 `;
 
 interface LayoutProps {
-  children: JSX.Element[] | JSX.Element;
+  children?: JSX.Element[] | JSX.Element;
   defaultProps?: useSelectProps;
 }
 
@@ -117,13 +117,13 @@ export default function Layout({ children, defaultProps }: LayoutProps) {
       const countyCode = countyList.filter((item) => item.name === defaultProps.defaultCounty);
       handleGetTownList(countyCode[0]?.code);
     }
-  }, [defaultProps]);
+  }, [defaultProps, countyList]);
   return (
     <>
       <Meta />
       <NavbarAppBar />
       {isLoading && <LoadingBox />}
-      <Container fixed sx={{ position: 'relative', minHeight: '100vw', pt: 3 }}>
+      <Container fixed sx={{ position: 'relative', minHeight: '100vw', pt: 3, pl: { xs: 2 }, pr: { xs: 2 } }}>
         <TaiwanBox />
 
         <Typography variant="h1" textAlign="center">
