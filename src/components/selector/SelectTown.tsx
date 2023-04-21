@@ -25,6 +25,7 @@ export default function SelectTown({ value, handleChange, selectList, disabled }
         m: '6px',
         minWidth: { xs: '100%', md: 165 },
         maxWidth: { xs: '100%', md: 165 },
+        background: '#ffffff',
         maxHeight: 40,
         '&:focus-within label': {
           color: theme.palette.primary.main,

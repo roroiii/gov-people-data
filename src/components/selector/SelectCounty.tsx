@@ -25,6 +25,7 @@ export default function SelectCounty({ value, handleChange, selectList }: Select
           minWidth: { xs: '100%', md: 165 },
           maxWidth: { xs: '100%', md: 165 },
           maxHeight: 40,
+          background: '#ffffff',
           '&:focus-within label': {
             color: theme.palette.primary.main,
           },

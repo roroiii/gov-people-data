@@ -13,7 +13,7 @@ interface SelectYearProps {
 export default function SelectYear({ value, handleChange, selectList }: SelectYearProps) {
   return (
     <>
-      <FormControl sx={{ m: '6px', minWidth: 73, height: 40 }}>
+      <FormControl sx={{ m: '6px', minWidth: 73, height: 40, background: '#ffffff' }}>
         <InputLabel id={`year-open-select-label`}>年份</InputLabel>
         <Select
           labelId={`year-open-select-label`}
