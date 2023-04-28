@@ -118,6 +118,7 @@ export default function Layout({ children, defaultProps }: LayoutProps) {
       handleGetTownList(countyCode[0]?.code);
     }
   }, [defaultProps, countyList]);
+
   return (
     <>
       <Meta />
@@ -144,7 +145,7 @@ export default function Layout({ children, defaultProps }: LayoutProps) {
             disabled={county === ''}
           />
 
-          <SubmitButton onClick={handleSubmit} variant="contained" disabled={county === '0' || town === '0'}>
+          <SubmitButton onClick={handleSubmit} variant="contained" disabled={county === '' || town === ''}>
             Submit
           </SubmitButton>
         </SelectBox>

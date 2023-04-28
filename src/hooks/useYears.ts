@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getDocument } from '@/pages/api/govAPI';
+import { getDocument } from '@/api/govAPI';
 import { UseYearsState } from './types';
 
 export default function useYears(): UseYearsState {

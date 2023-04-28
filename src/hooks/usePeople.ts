@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getPeopleData } from '@/pages/api/govAPI';
+import { getPeopleData } from '@/api/govAPI';
 import { UsePeopleState } from './types';
 import { getPeopleFormat } from '@/utils/format';
 import { useDispatch } from 'react-redux';

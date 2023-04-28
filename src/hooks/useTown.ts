@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getTown } from '@/pages/api/govAPI';
+import { getTown } from '@/api/govAPI';
 import { TownItem, UseTownState } from './types';
 
 export default function useTown(): UseTownState {

@@ -1,4 +1,4 @@
-import { PeopleAttr } from '@/pages/api/types';
+import { PeopleAttr } from '@/api/types';
 import { SelectChangeEvent } from '@mui/material';
 
 export interface UseYearsState {

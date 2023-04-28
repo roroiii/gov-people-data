@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getCounty } from '@/pages/api/govAPI';
+import { getCounty } from '@/api/govAPI';
 import { CountyItems, CountyItem, UseCountyState } from './types';
 import { getJSONbyXML } from '@/utils/xmlToJson';
 
