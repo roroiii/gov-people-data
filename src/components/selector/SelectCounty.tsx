@@ -8,7 +8,7 @@ import theme from '@/utils/theme';
 
 interface SelectCountyProps {
   value: string;
-  handleChange: (event: any, newValue: string) => void;
+  handleChange: (event: React.SyntheticEvent<Element, Event>, newValue: string) => void;
   selectList: CountyList[];
 }
 

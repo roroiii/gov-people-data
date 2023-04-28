@@ -1,12 +1,12 @@
 import axios, { AxiosError } from 'axios';
-import { PeopleAttr } from './types';
+import { Params, PeopleAttr } from './types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const COUNTY_API = process.env.NEXT_PUBLIC_COUNTY_API;
 const TOWN_API = process.env.NEXT_PUBLIC_TOWN_API;
 const DOCUMENT_API = process.env.NEXT_PUBLIC_DOCUMENT_API;
 
-const getRequest = async (url: string, params?: any) => {
+const getRequest = async (url: string, params?: Params) => {
   try {
     return await axios.get(url, params);
   } catch (error) {
@@ -28,5 +28,6 @@ export const getTown = async (code: string) => {
 };
 
 export const getPeopleData = async (data: PeopleAttr) => {
-  return await getRequest(`${API_URL}/ODRP019/${data.year}`, { params: data.params });
+  const { COUNTY, TOWN } = data.params;
+  return await getRequest(`${API_URL}/ODRP019/${data.year}`, { COUNTY, TOWN });
 };

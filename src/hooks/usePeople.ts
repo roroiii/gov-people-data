@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { getPeopleData } from '@/api/govAPI';
 import { UsePeopleState } from './types';
 import { getPeopleFormat } from '@/utils/format';
@@ -9,24 +9,27 @@ export default function usePeople(): UsePeopleState {
   const dispatch = useDispatch();
   const [peopleData, setPeopleData] = useState<UsePeopleState['peopleData']>(null);
 
-  const handleGetPeopleData: UsePeopleState['handleGetPeopleData'] = async (data) => {
-    dispatch(setLoading(true));
-    const res = await getPeopleData(data);
+  const handleGetPeopleData: UsePeopleState['handleGetPeopleData'] = useCallback(
+    async (data) => {
+      dispatch(setLoading(true));
+      const res = await getPeopleData(data);
 
-    if (res instanceof Error) {
-      dispatch(setLoading(false));
-      return;
-    }
-
-    if (res && res.status === 200) {
-      dispatch(setLoading(false));
-      if (res.data.responseCode === 'OD-0101-S') {
-        const items = res.data.responseData;
-        const result = getPeopleFormat(items);
-        setPeopleData(result);
+      if (res instanceof Error) {
+        dispatch(setLoading(false));
+        return;
       }
-    }
-  };
+
+      if (res && res.status === 200) {
+        dispatch(setLoading(false));
+        if (res.data.responseCode === 'OD-0101-S') {
+          const items = res.data.responseData;
+          const result = getPeopleFormat(items);
+          setPeopleData(result);
+        }
+      }
+    },
+    [dispatch]
+  );
 
   return {
     peopleData,

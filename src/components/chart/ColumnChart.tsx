@@ -35,7 +35,7 @@ export default function ColumnChart(props: HighchartsReact.Props) {
           dataLabels: {
             enabled: true,
             formatter: function () {
-              return Highcharts.numberFormat(this.y!, 0, '.', ',');
+              return Highcharts.numberFormat(this.y ?? 0, 0, '.', ',');
             },
           },
         },

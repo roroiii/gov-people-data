@@ -7,7 +7,7 @@ import theme from '@/utils/theme';
 
 interface SelectTownProps {
   value: string;
-  handleChange: (event: any, newInputValue: string) => void;
+  handleChange: (event: React.SyntheticEvent<Element, Event>, newInputValue: string) => void;
   selectList: TownList[] | null;
   disabled: boolean;
 }

@@ -37,6 +37,7 @@ export interface PeopleResData {
   household_ordinary_f: string;
   household_business_f: string;
   household_single_f: string;
+  [key: string]: string;
 }
 
 export interface PeopleData {
@@ -88,9 +89,9 @@ export interface useSelectState {
   year: string;
   handleChangeYearSelect: (event: SelectChangeEvent) => void;
   county: string;
-  handleChangeCountySelect: (event: any, newInputValue: string) => void;
+  handleChangeCountySelect: (event: React.SyntheticEvent<Element, Event>, newInputValue: string) => void;
   town: string;
-  handleChangeTownSelect: (event: any, newInputValue: string) => void;
+  handleChangeTownSelect: (event: React.SyntheticEvent<Element, Event>, newInputValue: string) => void;
 }
 
 export interface useSelectProps {

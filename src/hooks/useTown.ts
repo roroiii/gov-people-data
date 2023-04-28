@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { getTown } from '@/api/govAPI';
 import { TownItem, UseTownState } from './types';
 
 export default function useTown(): UseTownState {
   const [townList, setTownList] = useState<UseTownState['townList']>(null);
 
-  const handleGetTownList: UseTownState['handleGetTownList'] = async (code) => {
+  const handleGetTownList: UseTownState['handleGetTownList'] = useCallback(async (code) => {
     const res = await getTown(code);
     if (res instanceof Error) return;
     if (res && res.status === 200) {
@@ -15,7 +15,7 @@ export default function useTown(): UseTownState {
       }));
       setTownList(townItems);
     }
-  };
+  }, []);
 
   return {
     townList,

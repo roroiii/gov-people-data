@@ -103,21 +103,21 @@ export default function Layout({ children, defaultProps }: LayoutProps) {
   useEffect(() => {
     handleGetYearsList();
     handleGeCountyList();
-  }, []);
+  }, [handleGetYearsList, handleGeCountyList]);
 
   useEffect(() => {
     if (county && countyList) {
       const countyCode = countyList.filter((item) => item.name === county);
       handleGetTownList(countyCode[0]?.code);
     }
-  }, [county, countyList]);
+  }, [county, countyList, handleGetTownList]);
 
   useEffect(() => {
     if (defaultProps && countyList) {
       const countyCode = countyList.filter((item) => item.name === defaultProps.defaultCounty);
       handleGetTownList(countyCode[0]?.code);
     }
-  }, [defaultProps, countyList]);
+  }, [defaultProps, countyList, handleGetTownList]);
 
   return (
     <>

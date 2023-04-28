@@ -11,12 +11,12 @@ export default function useSelect(props?: useSelectProps): useSelectState {
     setYear(event.target.value);
   };
 
-  const handleChangeCountySelect = (event: any, newInputValue: string) => {
+  const handleChangeCountySelect = (event: React.SyntheticEvent<Element, Event>, newInputValue: string) => {
     setTown('');
     setCounty(newInputValue);
   };
 
-  const handleChangeTownSelect = (event: any, newInputValue: string) => {
+  const handleChangeTownSelect = (event: React.SyntheticEvent<Element, Event>, newInputValue: string) => {
     setTown(newInputValue);
   };
 

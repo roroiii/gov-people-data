@@ -20,7 +20,7 @@ export default function DetailPage() {
         },
       });
     }
-  }, [year, county, town]);
+  }, [year, county, town, handleGetPeopleData]);
 
   if (year && county && town) {
     const defaultProps = { defaultYear: year, defaultCounty: county, defaultTown: town };

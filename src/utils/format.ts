@@ -22,12 +22,12 @@ function calcPeople(items: PeopleResData[]) {
 }
 
 function getDataFormat(items: PeopleResData[]) {
-  return items.map((item: any) => {
+  return items.map((item: PeopleResData) => {
     let statistic_yyy = item['﻿statistic_yyy'];
     if (statistic_yyy) {
       statistic_yyy = statistic_yyy.replace(/[^\w]/g, '');
     }
-    const rest = Object.fromEntries(Object.entries(item).filter(([key, value]) => key !== '﻿statistic_yyy'));
+    const rest = Object.fromEntries(Object.entries(item).filter(([key]) => key !== '﻿statistic_yyy'));
     return { statistic_yyy, ...rest };
   });
 }
