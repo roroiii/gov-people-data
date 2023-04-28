@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container, Box, Button, Divider, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import NavbarAppBar from '@/components/Navbar';
@@ -11,7 +11,7 @@ import SelectYear from '../selector/SelectYear';
 import SelectCounty from '../selector/SelectCounty';
 import SelectTown from '../selector/SelectTown';
 import theme from '@/utils/theme';
-import { selectLoading } from '@/redux/reducers/loadingReducer';
+import { selectLoading, setLoading } from '@/redux/reducers/loadingReducer';
 import useYears from '@/hooks/useYears';
 import useCounty from '@/hooks/useCounty';
 import useTown from '@/hooks/useTown';
@@ -81,9 +81,10 @@ interface LayoutProps {
 
 export default function Layout({ children, defaultProps }: LayoutProps) {
   const router = useRouter();
+  const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
   const { yearsList, handleGetYearsList } = useYears();
-  const { countyList, handleGeCountyList } = useCounty();
+  const { countyList, handleGetCountyList } = useCounty();
   const { townList, handleGetTownList } = useTown();
   const {
     year,
@@ -97,13 +98,19 @@ export default function Layout({ children, defaultProps }: LayoutProps) {
   } = useSelect(defaultProps);
 
   const handleSubmit = () => {
-    router.push(`/${year}/${county}/${town}`);
+    const newUrl = `/${year}/${county}/${town}`;
+    const isSamePage = newUrl === decodeURIComponent(router.asPath);
+
+    if (!isSamePage) {
+      dispatch(setLoading(true));
+      router.push(newUrl);
+    }
   };
 
   useEffect(() => {
     handleGetYearsList();
-    handleGeCountyList();
-  }, [handleGetYearsList, handleGeCountyList]);
+    handleGetCountyList();
+  }, [handleGetYearsList, handleGetCountyList]);
 
   useEffect(() => {
     if (county && countyList) {

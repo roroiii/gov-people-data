@@ -1,4 +1,3 @@
-import { PeopleAttr } from '@/api/types';
 import { SelectChangeEvent } from '@mui/material';
 
 export interface UseYearsState {
@@ -54,11 +53,6 @@ export interface PeopleData {
   };
 }
 
-export interface UsePeopleState {
-  peopleData: PeopleData | null;
-  handleGetPeopleData: (data: PeopleAttr) => void;
-}
-
 export interface CountyList {
   code: string;
   name: string;
@@ -66,7 +60,7 @@ export interface CountyList {
 
 export interface UseCountyState {
   countyList: CountyList[] | null;
-  handleGeCountyList: () => void;
+  handleGetCountyList: () => void;
 }
 
 export interface TownList {

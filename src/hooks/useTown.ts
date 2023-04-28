@@ -1,20 +1,13 @@
 import { useCallback, useState } from 'react';
-import { getTown } from '@/api/govAPI';
-import { TownItem, UseTownState } from './types';
+import { UseTownState } from './types';
+import { getTownList } from '@/api/getListData';
 
 export default function useTown(): UseTownState {
   const [townList, setTownList] = useState<UseTownState['townList']>(null);
 
   const handleGetTownList: UseTownState['handleGetTownList'] = useCallback(async (code) => {
-    const res = await getTown(code);
-    if (res instanceof Error) return;
-    if (res && res.status === 200) {
-      const townItems = res.data.map((item: TownItem) => ({
-        code: item.towncode,
-        name: item.townname,
-      }));
-      setTownList(townItems);
-    }
+    const townItems = await getTownList(code);
+    if (townItems) setTownList(townItems);
   }, []);
 
   return {

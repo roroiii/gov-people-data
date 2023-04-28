@@ -1,18 +1,13 @@
 import { useCallback, useState } from 'react';
-import { getDocument } from '@/api/govAPI';
 import { UseYearsState } from './types';
+import { getYearsList } from '@/api/getListData';
 
 export default function useYears(): UseYearsState {
   const [yearsList, setYearsList] = useState<UseYearsState['yearsList']>(null);
 
   const handleGetYearsList = useCallback(async () => {
-    const res = await getDocument();
-
-    if (res instanceof Error) return;
-    if (res && res.status === 200) {
-      const years = res.data.paths['/ODRP019/{yyy}'].get.parameters[0].enum.map(String);
-      setYearsList(years);
-    }
+    const years = await getYearsList();
+    if (years) setYearsList(years);
   }, []);
 
   return {
